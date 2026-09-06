@@ -1,0 +1,41 @@
+/* กรอบหลัก */
+.lil-gui {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 12px !important;
+  border: 1px solid #e4e4e7 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+  overflow: hidden !important;
+  color: #18181b !important;
+}
+
+/* แถบ Title / Header ด้านบน */
+.lil-gui .title {
+  background-color: #f4f4f5 !important;
+  color: #000000 !important;
+  font-weight: bold !important;
+  border-bottom: 1px solid #e4e4e7 !important;
+}
+
+/* ช่อง Controller และตัวอักษรข้อความ */
+.lil-gui .controller {
+  color: #27272a !important;
+}
+
+/* กล่องตัวเลข / ช่อง Input */
+.lil-gui input {
+  background-color: #ffffff !important;
+  color: #2563eb !important;
+  border: 1px solid #d4d4d8 !important;
+  border-radius: 4px !important;
+}
+
+/* พื้นหลังสไลเดอร์ (Track) */
+.lil-gui .slider {
+  background-color: #e4e4e7 !important;
+  border-radius: 4px !important;
+}
+
+/* แถบสีสไลเดอร์เวลาลาก (Fill) */
+.lil-gui .slider .fill {
+  background-color: #2563eb !important;
+}
