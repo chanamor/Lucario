@@ -8,13 +8,9 @@
         overflow: hidden;
       }
     </style>
-
     <link rel="stylesheet" href="style.css">
   </head>
-
   <body>
-
-    
 
     <!-- core three.js -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
@@ -27,7 +23,7 @@
     <script>
       const renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.shadowMap.enabled = true; // Shadow
+      renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       document.body.appendChild(renderer.domElement);
 
@@ -37,13 +33,13 @@
         75,
         window.innerWidth / window.innerHeight,
         0.1,
-        1000,
+        1000
       );
       camera.position.set(0, 2, 5);
       camera.lookAt(0, 0, 0);
       const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-      const abmientLight = new THREE.AmbientLight(0x404040, 1); // soft white light
+      const abmientLight = new THREE.AmbientLight(0x404040, 1);
       scene.add(abmientLight);
 
       const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
@@ -69,13 +65,12 @@
         undefined,
         (error) => {
           console.error("Unable to load EXR skybox:", error);
-        },
+        }
       );
 
       // ใส่พื้น
       const texFloor = new THREE.TextureLoader().load(
-        "https://sibsansuk.github.io/mossy_cobblestone_diff_1k.jpg",
-        (t) => {},
+        "https://sibsansuk.github.io/mossy_cobblestone_diff_1k.jpg"
       );
       const matFloor = new THREE.MeshStandardMaterial({
         map: texFloor,
@@ -85,7 +80,6 @@
       const plane = new THREE.Mesh(planeGeometry, matFloor);
       plane.rotation.x = -Math.PI / 2;
       plane.receiveShadow = true;
-
       scene.add(plane);
 
       // load glb และใช้ pbr material
@@ -107,10 +101,9 @@
         scene.add(lucarioModel);
       });
 
-      // สร้าง GUI (แก้ไขเป็น lil.GUI)
+      // สร้าง GUI
       const gui = new lil.GUI();
 
-      // 1. ปรับตำแหน่งแหล่งกำเนิดแสง (DirectionalLight)
       const lightFolder = gui.addFolder('Directional Light');
       lightFolder.add(directionalLight.position, 'x', -20, 20).name('Position X');
       lightFolder.add(directionalLight.position, 'y', 0, 20).name('Position Y');
@@ -130,34 +123,11 @@
       });
       pbrFolder.open();
 
-
-
-      
-    const buildingLoader = new THREE.GLTFLoader();
-    buildingLoader.load("./island_tree_02_1k.glb", (gltf) => {
-    const buildingModel = gltf.scene;
-
-    buildingModel.traverse((child) => {
-    if (child.isMesh) {
-      child.castShadow = true;
-      child.receiveShadow = true;
-    }
-  });
-
- 
-    buildingModel.position.set(4, 0, -1);
-    buildingModel.scale.set(1, 1, 1);
-
-    scene.add(buildingModel);
-});
-      
-
-      // Animation Loop (ลบ mesh.rotation.y ออก)
-      function animate(t) {
+      function animate() {
         requestAnimationFrame(animate);
         renderer.render(scene, camera);
       }
-      animate(0);
+      animate();
 
       window.addEventListener("resize", () => {
         camera.aspect = window.innerWidth / window.innerHeight;
